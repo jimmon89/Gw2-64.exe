@@ -50,7 +50,7 @@ jobs:
         with:
           file_glob: true
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: *Gw2-64.exe
+          file: /*.exe
           tag: ${{ github.ref }}
 
       - name: Upload binaries to release
@@ -58,6 +58,6 @@ jobs:
         with:
           file_glob: true
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: *Gw2-64.bat
+          file: /*.bat
           tag: ${{ github.ref }}
 
