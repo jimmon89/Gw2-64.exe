@@ -43,14 +43,20 @@ jobs:
         uses: svenstaro/upload-release-action@2.7.0
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: Gw2-64.exe
+          file_glob: true
+          make_latest: true
+          file: target/release/*.exe
           tag: ${{ github.ref }}
       - name: Upload files to a GitHub release
         uses: svenstaro/upload-release-action@2.7.0
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: Gw2-64.bat
+          file_glob: true
+          make_latest: true
+          file: target/release/*.bat
           tag: ${{ github.ref }}
+        
+            
 
             
             
