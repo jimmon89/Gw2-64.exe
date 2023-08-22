@@ -37,10 +37,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASETAGVARIABLE: ${{ steps.tag.outputs.release_tag }}
         with:
           target_commitish: ${{ github.sha }}
-          tag_name: $RELEASETAGVARIABLE
+          tag_name: ${{ github.sha }}
           draft: false
           prerelease: false
           files: Gw2-64.exe
@@ -48,10 +47,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASETAGVARIABLE: ${{ steps.tag.outputs.release_tag }}
         with:
           target_commitish: ${{ github.sha }}
-          tag_name: $RELEASETAGVARIABLE
+          tag_name: ${{ github.sha }}
           draft: false
           prerelease: false
           files: Gw2-64.bat
