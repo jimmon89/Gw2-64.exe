@@ -48,16 +48,12 @@ jobs:
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
-          file_glob: true
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /*.exe
+          file: Gw2-64.exe
           tag: ${{ github.ref }}
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
-          file_glob: true
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /*.bat
+          file: Gw2-64.bat
           tag: ${{ github.ref }}
 
