@@ -45,6 +45,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ github.ref }}
           files: |
             ${{ matrix.asset_name }}.exe
             ${{ matrix.asset_name }}.bat
