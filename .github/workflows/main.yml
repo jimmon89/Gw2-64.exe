@@ -18,8 +18,8 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            artifact_name:  ${{ runner.os }} Build.zip
-            asset_name:  ${{ runner.os }} Build
+            artifact_name:  ${{ matrix.os }} Build.zip
+            asset_name:  ${{ matrix.os }} Build
 
     runs-on: ${{ matrix.os }}
 
@@ -42,9 +42,8 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ runner.os }} Build
+          name: ${{ matrix.os }} Build
           path: |
-          
             *.exe
             *.bat
   publish:
@@ -55,8 +54,8 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            artifact_name:  ${{ runner.os }} Build.zip
-            asset_name:  ${{ runner.os }} Build
+            artifact_name:  ${{ matrix.os }} Build.zip
+            asset_name:  ${{ matrix.os }} Build
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
