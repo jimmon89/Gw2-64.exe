@@ -30,26 +30,22 @@ jobs:
           pip install -r requirements.txt
       - name: Build Executable
         run: python -m nuitka --assume-yes-for-downloads --standalone --onefile --windows-icon-from-ico=icons/Gw2-64.ico --output-dir=. Gw2-64.py
-      - name: Bump Git Tag
-        id: tag
-        run: echo "release_tag=Gw2-64_$(date +"%Y.%m.%d_%H-%M")" >> "$GITHUB_OUTPUT"
+      - name: 'Get Previous tag'
+        id: previous_tag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        with:
+          fallback: 1.0.0
       - name: Release Exe
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          target_commitish: ${{ github.sha }}
-          tag_name: ${{ github.sha }}
-          draft: false
-          prerelease: false
+          tag_name: ${{steps.previous_tag.outputs.tag}}
           files: Gw2-64.exe
       - name: Release Bat
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          target_commitish: ${{ github.sha }}
-          tag_name: ${{ github.sha }}
-          draft: false
-          prerelease: false
+          tag_name: ${{steps.previous_tag.outputs.tag}}
           files: Gw2-64.bat
