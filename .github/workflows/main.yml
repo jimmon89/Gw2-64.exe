@@ -16,10 +16,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: windows-latest
-            artifact_name:  ${{ matrix.os }} Build.zip
-            asset_name:  ${{ matrix.os }} Build
+        - os: windows-latest
+          artifact_name:  ${{ matrix.os }} Build.zip
+          asset_name:  ${{ matrix.os }} Build
 
     runs-on: ${{ matrix.os }}
 
