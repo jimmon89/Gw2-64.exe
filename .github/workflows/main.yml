@@ -32,10 +32,12 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
+          name: Gw2-64.exe
           path: Gw2-64.exe
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
+          name: Gw2-64.bat
           path: Gw2-64.bat
       - name: Upload files to a GitHub release
         uses: svenstaro/upload-release-action@2.7.0
