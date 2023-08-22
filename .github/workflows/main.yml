@@ -34,10 +34,6 @@ jobs:
           pip install -r requirements.txt
       - name: Build Executable
         run: python -m nuitka --assume-yes-for-downloads --standalone --onefile --windows-icon-from-ico=icons/Gw2-64.ico --output-dir=. Gw2-64.py
-      - name: Zip Assets
-	uses: montudor/action-zip@v1
-        with:
-          args: zip -qq -r dir.zip dir
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
