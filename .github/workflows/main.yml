@@ -34,13 +34,6 @@ jobs:
           pip install -r requirements.txt
       - name: Build Executable
         run: python -m nuitka --assume-yes-for-downloads --standalone --onefile --windows-icon-from-ico=icons/Gw2-64.ico --output-dir=. Gw2-64.py
-        
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          path: |
-            ${{ matrix.asset_name }}.exe
-            ${{ matrix.asset_name }}.bat
 
       - name: Release
         uses: softprops/action-gh-release@v1
