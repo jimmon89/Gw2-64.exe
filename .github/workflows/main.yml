@@ -46,16 +46,6 @@ jobs:
           path: |
             *.exe
             *.bat
-  publish:
-    name: Publish for ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: windows-latest
-            artifact_name:  ${{ matrix.os }} Build.zip
-            asset_name:  ${{ matrix.os }} Build
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
