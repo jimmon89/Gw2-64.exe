@@ -16,7 +16,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        - os: windows-latest
+        include:
+          - os: windows-latest
 
     runs-on: ${{ matrix.os }}
 
