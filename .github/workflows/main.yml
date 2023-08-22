@@ -45,6 +45,7 @@ jobs:
         run: python -m nuitka --assume-yes-for-downloads --standalone --onefile --windows-icon-from-ico=icons/Gw2-64.ico --output-dir=. Gw2-64.py
         
       - name: Bump git tag
+        id: tag
         run: |
           echo "::set-output name=release_tag::UserBuild_$(date +"%Y.%m.%d_%H-%M")"
           
