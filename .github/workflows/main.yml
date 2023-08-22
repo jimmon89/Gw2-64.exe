@@ -17,8 +17,6 @@ jobs:
       fail-fast: false
       matrix:
         - os: windows-latest
-          artifact_name:  ${{ matrix.os }} Build.zip
-          asset_name:  ${{ matrix.os }} Build
 
     runs-on: ${{ matrix.os }}
 
