@@ -14,7 +14,6 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            asset_name: Gw2-64
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout Repo
@@ -33,25 +32,25 @@ jobs:
         run: python -m nuitka --assume-yes-for-downloads --standalone --onefile --windows-icon-from-ico=icons/Gw2-64.ico --output-dir=. Gw2-64.py
       - name: Bump Git Tag
         id: tag
-        run: |
-          echo "release_tag=${{ matrix.asset_name }}_$(date +"%Y.%m.%d_%H-%M")" >> $GITHUB_OUTPUT
+        run: echo "release_tag=Gw2-64_$(date +"%Y.%m.%d_%H-%M")" >> "$GITHUB_OUTPUT"
       - name: Release Exe
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASETAGVARIABLE: ${{ steps.tag.outputs.release_tag }}
         with:
           target_commitish: ${{ github.sha }}
-          tag_name: ${{ steps.tag.outputs.release_tag }}
+          tag_name: $RELEASETAGVARIABLE
           draft: false
           prerelease: false
-          files: ${{ matrix.asset_name }}.exe
+          files: Gw2-64.exe
       - name: Release Bat
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           target_commitish: ${{ github.sha }}
-          tag_name: ${{ steps.tag.outputs.release_tag }}
+          tag_name: $RELEASETAGVARIABLE
           draft: false
           prerelease: false
-          files: ${{ matrix.asset_name }}.bat
+          files: Gw2-64.bat
