@@ -17,6 +17,8 @@ jobs:
       matrix:
         include:
           - os: windows-latest
+            artifact_name: Gw2-64
+            asset_name: Gw2-64
 
     runs-on: ${{ matrix.os }}
 
@@ -36,22 +38,14 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
-          path: Gw2-64.exe
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          path: Gw2-64.bat
+          path: |
+            ${{ matrix.artifact_name }}.exe
+            ${{ matrix.artifact_name }}.bat
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
-          file: target/release/Gw2-64.exe
-          tag: ${{ github.ref }}
-
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          file: target/release/Gw2-64.bat
+          name: ${{ matrix.artifact_name }}
+          file: target/release/${{ matrix.artifact_name }}
           tag: ${{ github.ref }}
 
