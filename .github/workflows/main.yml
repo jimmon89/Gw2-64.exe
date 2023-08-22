@@ -48,6 +48,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASETAGVARIABLE: ${{ steps.tag.outputs.release_tag }}
         with:
           target_commitish: ${{ github.sha }}
           tag_name: $RELEASETAGVARIABLE
